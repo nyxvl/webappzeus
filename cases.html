@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>🎲 Открытие кейса</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .case-container {
+      margin-top: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .items {
+      display: flex;
+      transition: transform 3s cubic-bezier(.17,.67,.83,.67);
+    }
+
+    .item {
+      flex: 0 0 150px;
+      margin: 10px;
+      padding: 20px;
+      background: linear-gradient(135deg, #ff6600, #ffcc00);
+      border-radius: 12px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .highlight {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: red;
+      transform: translateX(-50%);
+    }
+
+    button {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎲 Открытие кейса</h1>
+    <div class="case-container">
+      <div class="items" id="items">
+        <div class="item">⭐ 10</div>
+        <div class="item">🎟 3 Билета</div>
+        <div class="item">⭐ 50</div>
+        <div class="item">🔥 НФТ подарок!</div>
+        <div class="item">⭐ 100</div>
+        <div class="item">💎 Подарок "Алмаз" на аккаунт</div>
+        <div class="item">⭐ 25</div>
+        <div class="item">⭐ 5</div>
+      </div>
+      <div class="highlight"></div>
+    </div>
+    <button onclick="openCase()">Открыть кейс</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function openCase() {
+      const items = document.getElementById("items");
+      const prizes = document.querySelectorAll(".item");
+      const randomIndex = Math.floor(Math.random() * prizes.length);
+
+      // ширина одного блока (170px с margin)
+      const offset = 170 * randomIndex;
+
+      items.style.transform = `translateX(-${offset}px)`;
+
+      setTimeout(() => {
+        document.getElementById("result").innerText =
+          "🎉 Вам выпало: " + prizes[randomIndex].innerText;
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
 
